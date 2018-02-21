@@ -1,0 +1,40 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("button").click(function(){
+	  var i = $("#intInput").val();		
+		  if (isNaN(i)) 
+		  {
+		    alert("Must input numbers");
+		    $("#intInput").val('');
+		    document.getElementById("output").innerHTML = '';
+		  }else{
+			var url = "http://localhost:8093/word/" + i;		
+			var xhttp = new XMLHttpRequest();
+		  	xhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		     document.getElementById("output").innerHTML = this.responseText;
+		    }
+		  	};
+		  	xhttp.open("GET", url , true);
+		  	xhttp.send();	  
+		  }
+    });
+});
+</script>
+</head>
+<body>
+<h2>FizzBizz App!</h2>
+Input Integer :<input type="text" name="intInput" id="intInput">
+<br/>
+<br/>
+<button>Submit Integer</button>
+<br/>
+<br/>
+Output Text : <h3 id="output"></h3>
+
+</body>
+</html>
+
